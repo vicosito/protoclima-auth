@@ -78,7 +78,7 @@ exports.update = function (request, response, next) {
     });
 };
 
-exports.findById = function (request, response, next) {
+exports.findById = function (request, response, next, id) {
     userModel.get(id).run().then(function (user) {
         request.user = user;
         next();

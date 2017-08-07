@@ -1,6 +1,7 @@
 var thinky = require('../../config/thinky');
 var type = thinky.type;
-var r = thinky.r;
+var greenhouseParameters = require('./greenhouse.parameters.server.model');
+var greenhouseMicroController = require('./greenhouse.microcontroller.server.model');
 
 var GreenHouseSchema = thinky.createModel('greenhouse', {
     name: type.string().required(),
@@ -8,5 +9,6 @@ var GreenHouseSchema = thinky.createModel('greenhouse', {
     description: type.string(),
     state: type.boolean()
 });
-
+GreenHouseSchema.hasMany(greenhouseParameters, 'parametros', 'id', 'greenhouseId');
+GreenHouseSchema.hasMany(greenhouseMicroController, 'microcontroladores', 'id', 'greenhouseId');
 module.exports = GreenHouseSchema;

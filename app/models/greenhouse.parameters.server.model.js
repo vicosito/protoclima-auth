@@ -8,7 +8,8 @@ var GreenHouseParametersSchema = thinky.createModel('Parametros', {
     biologicalMinimum: type.number().min(1).required(),
     optimal: type.number().min(1).required(),
     maximumBiological: type.number().min(1).required(),
-    maximumLethal: type.number().min(1).required()
+    maximumLethal: type.number().min(1).required(),
+    greenhouseId: type.string()
 });
 
 module.exports = GreenHouseParametersSchema;

@@ -7,7 +7,8 @@ var GreenHouseSchema = thinky.createModel('greenhouse', {
     name: type.string().required(),
     product_name: type.string().required(),
     description: type.string(),
-    state: type.boolean()
+    state: type.boolean(),
+    userId: type.string()
 });
 GreenHouseSchema.hasMany(greenhouseParameters, 'parametros', 'id', 'greenhouseId');
 GreenHouseSchema.hasMany(greenhouseMicroController, 'microcontroladores', 'id', 'greenhouseId');

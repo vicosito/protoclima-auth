@@ -3,6 +3,7 @@ thinky = require('../../config/thinky');
 type = thinky.type;
 r = thinky.r;
 crypto = require('crypto');
+var greenhouse = require('./greenhouse.server.model');
 
 var UserSchema;
 UserSchema = thinky.createModel('user', {
@@ -14,8 +15,11 @@ UserSchema = thinky.createModel('user', {
     salt: type.buffer(),
     provider: type.string().required(),
     providerId: type.string(),
-    providerData: type.any()
+    providerData: type.any(),
+    greenhouseId: type.string()
 });
+
+UserSchema.hasMany(greenhouse, 'invernaderos', 'id', 'userId');
 
 UserSchema.pre('save', function (next) {
     if (this.password) {

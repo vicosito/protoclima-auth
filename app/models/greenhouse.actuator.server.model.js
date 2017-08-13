@@ -9,7 +9,5 @@ var ActuatorSchema = thinky.createModel('Actuador', {
     pin: type.string(),
     description: type.string()
 });
-
-ActuatorSchema.hasOne(MicroControllerSchema, 'Microcontrolador', 'id', 'microControllerId');
-
+ActuatorSchema.belongsTo(MicroControllerSchema, 'Microcontrolador', 'microControllerId', 'id');
 module.exports = ActuatorSchema;

@@ -9,7 +9,5 @@ var SensorSchema = thinky.createModel('Sensor', {
     pin: type.string(),
     description: type.string()
 });
-
-SensorSchema.hasOne(MicroControllerSchema, 'Microcontrolador', 'id', 'microControllerId');
-
+SensorSchema.belongsTo(MicroControllerSchema, 'Microcontrolador', 'microControllerId', 'id');
 module.exports = SensorSchema;

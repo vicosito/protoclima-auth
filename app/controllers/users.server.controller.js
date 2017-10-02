@@ -37,7 +37,7 @@ exports.signUp = function (request, response, next) {
                 if (error) {
                     return next(error);
                 }
-                return response.json('LOGIN SUCCESSFUL!')
+                return response.json('saveOk')
             })
         });
     } else {

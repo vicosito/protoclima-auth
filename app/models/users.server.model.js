@@ -7,10 +7,14 @@ var greenhouse = require('./greenhouse.server.model');
 
 var UserSchema;
 UserSchema = thinky.createModel('user', {
+    name: type.string().required(),
+    lastname:type.string().required(),
     email: type.string().email().required().min(6),
+    login: type.string().required(),
     password: type.string().validator([function (password) {
         return password && password.length > 6;
     }, 'Password should be longer']),
+    active: type.boolean().default(true),
     created: type.date().default(r.now()),
     salt: type.buffer(),
     provider: type.string().required(),

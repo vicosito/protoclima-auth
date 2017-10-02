@@ -5,8 +5,8 @@ var User = require('../../app/models/users.server.model');
 
 module.exports = function () {
     passport.use('local', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
+        usernameField: "email",
+        passwordField: "password",
         passReqToCallback: true
     }, function (request, email, password, done) {
         User.filter({

@@ -87,3 +87,11 @@ exports.findById = function (request, response, next, id) {
         return next(error);
     });
 };
+
+exports.findUserById = function (request, response, next) {
+    if (!request.user) {
+        return next(error);
+    } else {
+        response.json(request.user);
+    }
+};

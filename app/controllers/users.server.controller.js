@@ -69,7 +69,8 @@ exports.delete = function (request, response, next) {
 exports.update = function (request, response, next) {
     userModel.get(request.user.id).run().then(function (user) {
         user.merge(request.body).save().then(function (result) {
-
+            console.log('User:', result.id, 'updated');
+            return response.json('updatedOk');
         }).error(function (error) {
             return next(error);
         })

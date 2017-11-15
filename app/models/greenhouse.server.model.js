@@ -11,5 +11,5 @@ var GreenHouseSchema = thinky.createModel('greenhouse', {
     userId: type.string()
 });
 GreenHouseSchema.hasMany(greenhouseParameters, 'parametros', 'id', 'greenhouseId');
-GreenHouseSchema.hasMany(greenhouseParameters, 'microcontroladores', 'id', 'greenhouseId');
+GreenHouseSchema.hasMany(greenhouseMicroController, 'microcontroladores', 'id', 'greenhouseId');
 module.exports = GreenHouseSchema;

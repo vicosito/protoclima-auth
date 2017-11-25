@@ -2,11 +2,19 @@ var greenhouseModel = require('../models/greenhouse.server.model');
 
 
 exports.list = function (request, response, next) {
-    greenhouseModel.run().then(function (greenhouses) {
-        response.json(greenhouses);
-    }).error(function (error) {
-        return next(error);
-    });
+    if (request.headers.filtered) {
+        greenhouseModel._thinky.r.table("greenhouse").pluck(request.headers.filtered.split(",")).run().then(function (greenhouses) {
+            response.json(greenhouses);
+        }).error(function (error) {
+            return next(error);
+        });
+    } else {
+        greenhouseModel.run().then(function (greenhouses) {
+            response.json(greenhouses);
+        }).error(function (error) {
+            return next(error);
+        });
+    }
 };
 
 exports.findById = function (request, response, next, id) {

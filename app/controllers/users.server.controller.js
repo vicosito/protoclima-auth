@@ -46,11 +46,19 @@ exports.signUp = function (request, response, next) {
 };
 
 exports.list = function (request, response, next) {
-    userModel.run().then(function (users) {
-        response.json(users);
-    }).error(function (error) {
-        return next(error);
-    });
+    if (request.headers.filtered) {
+        userModel._thinky.r.table("user").pluck(request.headers.filtered.split(",")).run().then(function (users) {
+            response.json(users);
+        }).error(function (error) {
+            return next(error);
+        });
+    } else {
+        userModel.run().then(function (users) {
+            response.json(users);
+        }).error(function (error) {
+            return next(error);
+        });
+    }
 };
 
 exports.logout = function (request, response) {

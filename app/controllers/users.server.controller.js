@@ -78,7 +78,7 @@ exports.update = function (request, response, next) {
     userModel.get(request.user.id).run().then(function (user) {
         user.merge(request.body).save().then(function (result) {
             console.log('User:', result.id, 'updated');
-            return response.json('updatedOk');
+            return response.json('updateOk');
         }).error(function (error) {
             return next(error);
         })

@@ -28,8 +28,9 @@ exports.findById = function (request, response, next, id) {
 
 exports.update = function (request, response, next) {
     request.greenhouse.merge(request.body).save().then(function (result) {
-        response.json(result);
-    }).error(function (error) {
+        console.log('Greenhouse:', result.id, 'updated');
+        return response.json('updateOk');
+     }).error(function (error) {
         return next(error);
     });
 };
